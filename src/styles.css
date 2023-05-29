@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-one{
+  background-color: #1A0154;
+  color: #ffffff;
+}
+.btn-one:hover {
+  background-color: #1A0198;
+  color: #ffffff;
+}
+
+.btn-one:active {
+  background-color: #000000;
+  color: #1A0154;
+}
+
+.btn-two{
+  background-color: #FFC83D;
+  color: #1A0198;
+}
+
+.btn-two:hover {
+  background-color: #FFE13D;
+  color: #1A0198;
+}
+
+.btn-two:active {
+  background-color: #000000;
+  color: #1A0154;
+}
+
+.btn-three{
+  background-color: #4B297D;
+  color: #ffffff;
+}
