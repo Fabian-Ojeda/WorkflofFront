@@ -1,0 +1,21 @@
+<div class="divTitle">
+  <div class="m-3">
+    <h1>Prototipo de workflow</h1>
+    <hr/>
+  </div>
+  <div>
+    <app-identifier (nodosObjetivosUser)="recibirObjetivosPersona($event)"></app-identifier>
+  </div>
+</div>
+<div class="row m-1">
+  <div class="col-3 overflow-auto colObjetivos">
+    <app-lista-objetivos [objetivosPersonaIn]="objetivosPersona" (idObjetivoABuscar)="recibirObjetivoABuscar($event)">
+    </app-lista-objetivos>
+  </div>
+  <div class="col">
+    <h3>Diagrama</h3>
+    <app-my-diagram [idObjetivoBuscar]="idObjetivoABuscar"></app-my-diagram>
+  </div>
+</div>
+
+

@@ -1,0 +1,7 @@
+<div class="divObjetivos">
+    <h3>Objetivos</h3>
+  <div class="d-grid gap-2 col-10 mx-auto mt-3">
+    <button class="btn btn-two" *ngFor="let item of listaObjetivos"
+            (click)="cargarTareasObjetivo(item.id)">{{item.text}}</button>
+  </div>
+</div>

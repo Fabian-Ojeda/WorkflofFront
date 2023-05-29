@@ -1,0 +1,18 @@
+.colObjetivos{
+  max-height: 80vh;
+  border-color: #1A0154;
+  border-width: 2px;
+  border-style: solid;
+}
+hr {
+  height: 5px;
+  background-color: #1A0154;
+  opacity: 1;
+}
+
+.divTitle{
+  background-image: url('src/assets/img/diagram background.png');
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 30% auto;
+}
