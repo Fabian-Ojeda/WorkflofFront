@@ -2,7 +2,7 @@
   <div>
     <div class="left">
       <gojs-diagram #myDiagram [divClassName]='diagramDivClassName' [initDiagram]='initDiagram'
-                    [nodeDataArray]='dataNodosObjetivos' [linkDataArray]='dataLinks'
+                    [nodeDataArray]='state.diagramNodeData' [linkDataArray]='state.diagramLinkData'
                     [modelData]='state.paletteModelData' (modelChange)='diagramModelChange($event)'>
       </gojs-diagram>
     </div>
