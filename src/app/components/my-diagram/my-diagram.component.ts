@@ -71,11 +71,15 @@ export class MyDiagramComponent implements OnInit{
 
         console.log("nodos que llegan", data.nodes)
         console.log("relaciones que llegan", data.relations)
-        this.dataNodosObjetivos=data.nodes;
-        this.dataLinks=data.relations;
+        this.myDiagramComponent.clear();
+
+        this.state = produce(this.state, draft => {
+          draft.skipsDiagramUpdate = false;
+          draft.diagramNodeData = data.nodes;
+          draft.diagramLinkData = data.relations;
+        });
+
         this.spinnerService.hide();
-        // this.state.diagramNodeData=this.dataNodosObjetivos;
-        // this.state.diagramLinkData=data.relations;
       },
       error => {
         this.spinnerService.hide();
