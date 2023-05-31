@@ -2,7 +2,7 @@
   <div>
     <div class="left">
       <gojs-diagram #myDiagram [divClassName]='diagramDivClassName' [initDiagram]='initDiagram'
-                    [nodeDataArray]='state.diagramNodeData' [linkDataArray]='state.diagramLinkData'
+                    [nodeDataArray]='state.diagramNodeData'  [linkDataArray]='state.diagramLinkData'
                     [modelData]='state.paletteModelData' (modelChange)='diagramModelChange($event)'>
       </gojs-diagram>
     </div>
@@ -12,6 +12,9 @@
         <gojs-overview #myOverview [initOverview]='initOverview' [divClassName]='oDivClassName'
                        [observedDiagram]='observedDiagram'></gojs-overview>
       </div>
+      <div class="left">
+
+      </div>
     </div>
   </div>
 </div>
@@ -20,4 +23,3 @@
     <button class="btn btn-three" (click)="saveChanges()">Guardar Cambios</button>
   </div>
 </div>
-<h1>Este es un cambio</h1>
