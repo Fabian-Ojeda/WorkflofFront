@@ -219,6 +219,28 @@ export class MyDiagramComponent implements OnInit{
     // console.log("Links", this.state.diagramLinkData)
   }
 
+  public handleInspectorChange(changedPropAndVal: { prop: any; newVal: any; }) {
+
+    const path = changedPropAndVal.prop;
+    const value = changedPropAndVal.newVal;
+
+    this.state = produce(this.state, draft => {
+      const data = draft.selectedNodeData;
+
+      // @ts-ignore
+      data[path] = value;
+      // @ts-ignore
+      const key = data.id;
+      // tslint:disable-next-line:triple-equals
+      const idx = draft.diagramNodeData.findIndex(nd => nd.id == key);
+      if (idx >= 0) {
+        // @ts-ignore
+        draft.diagramNodeData[idx] = data;
+        draft.skipsDiagramUpdate = false; // we need to sync GoJS data with this new app state, so do not skips Diagram update
+      }
+    });
+  }
+
   saveChanges(){
     let infoToSave: SaveInfoTareasObjetivoModel= {
       idObjetivo: this.idObjetivoActual,

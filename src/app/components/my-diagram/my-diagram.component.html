@@ -13,6 +13,7 @@
                        [observedDiagram]='observedDiagram'></gojs-overview>
       </div>
       <div class="left">
+        <app-inspector [nodeData]='state.selectedNodeData' (onInspectorChange)='handleInspectorChange($event)'></app-inspector>
       </div>
     </div>
   </div>
