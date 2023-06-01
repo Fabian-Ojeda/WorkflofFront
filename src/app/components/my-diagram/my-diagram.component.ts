@@ -61,7 +61,7 @@ export class MyDiagramComponent implements OnInit{
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinnerService.hide();
-    }, 5000);
+    }, 2000);
   }
   private loadTareasObjetivo(idObjetivo:number){
     console.log("se va a buscar las tareas de "+idObjetivo)
@@ -152,6 +152,41 @@ export class MyDiagramComponent implements OnInit{
         makePort('r', go.Spot.Right),
         makePort('b', go.Spot.BottomCenter)
       );
+
+    dia.linkTemplate = $(go.Link,
+    //Un arreglo que no se para que sea
+      {
+        curve:go.Link.Bezier,
+        adjusting: go.Link.Stretch,
+        reshapable: true, relinkableFrom: true, relinkableTo: true,
+        toShortLength: 3
+      },
+
+      //A continuación algo que no se que hace
+      new go.Binding("curviness"),
+      //A continuación la linea
+      $(go.Shape,  // the link shape
+        { strokeWidth: 1.5 },
+        new go.Binding('stroke', 'progress', progress => progress ? "#52ce60" /* green */ : 'black'),
+        new go.Binding('strokeWidth', 'progress', progress => progress ? 2.5 : 1.5)),
+      // A copntinuación el simbolo de la flecha
+      $(go.Shape,  // the arrowhead
+        { toArrow: "standard", stroke: null },
+        new go.Binding('fill', 'progress', progress => progress ? "#52ce60" /* green */ : 'black')),
+      $(go.Panel, "Auto",
+        //a continuación la sección del texto
+        $(go.TextBlock, "(°O°)",  // the label text
+          {
+            textAlign: "center",
+            font: "9pt helvetica, arial, sans-serif",
+            margin: 4,
+            background: "white",
+            editable: true  // enable in-place editing
+          },
+          // editing the text automatically updates the model data
+          new go.Binding("text").makeTwoWay())
+        )
+    )
 
     return dia;
   }
@@ -259,6 +294,6 @@ export class MyDiagramComponent implements OnInit{
         this.showAlert.showError("Error", error);
       }
     )
-  }
+   }
 
 }
