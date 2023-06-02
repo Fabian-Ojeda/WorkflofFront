@@ -277,23 +277,25 @@ export class MyDiagramComponent implements OnInit{
   }
 
   saveChanges(){
-    let infoToSave: SaveInfoTareasObjetivoModel= {
-      idObjetivo: this.idObjetivoActual,
-      nodes: this.state.diagramNodeData,
-      relations: this.state.diagramLinkData
-    };
-    this.spinnerService.show();
-    this.diagramDataService.guardarDataTareasObjetivo(infoToSave).subscribe(
-      data=> {
-        this.spinnerService.hide();
-        this.showAlert.showSuccess("Información guardada", data.description)
-        console.log(data)
-      },
-      error => {
-        this.spinnerService.hide();
-        this.showAlert.showError("Error", error);
-      }
-    )
-   }
+    console.log("las relaciones se ven asi: ",this.state.diagramLinkData)
+
+   //  let infoToSave: SaveInfoTareasObjetivoModel= {
+   //    idObjetivo: this.idObjetivoActual,
+   //    nodes: this.state.diagramNodeData,
+   //    relations: this.state.diagramLinkData
+   //  };
+   //  this.spinnerService.show();
+   //  this.diagramDataService.guardarDataTareasObjetivo(infoToSave).subscribe(
+   //    data=> {
+   //      this.spinnerService.hide();
+   //      this.showAlert.showSuccess("Información guardada", data.description)
+   //      console.log(data)
+   //    },
+   //    error => {
+   //      this.spinnerService.hide();
+   //      this.showAlert.showError("Error", error);
+   //    }
+   //  )
+    }
 
 }

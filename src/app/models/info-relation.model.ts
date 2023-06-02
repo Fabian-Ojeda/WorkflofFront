@@ -4,4 +4,5 @@ export interface InfoRelationModel {
   to: string;
   fromPort: string;
   toPort: string;
+  text: string;
 }
