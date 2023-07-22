@@ -13,21 +13,10 @@ import {PersonaNodosDTOModel} from "../../models/persona-nodos-dto.model";
   providedIn: 'root'
 })
 export class DiagramDataService {
-
-
   constructor(
     private httpClient: HttpClient
   ) {
   }
-  getAllData(){
-    return this.httpClient.get(`${environment.API_URL}`, { responseType: 'text' }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.log('Error:', error);
-        return throwError(()=>'Ocurrió un error en la solicitud');
-      })
-    )
-  }
-
   getObjetivosPorCreador(personaId:number){
     return this.httpClient.get<PersonaNodosDTOModel>(`${environment.API_URL}obtenerObjetivosPorCreador?personaId=${personaId}`).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -36,9 +25,16 @@ export class DiagramDataService {
       })
     )
   }
-
   getInfoObjetivos(idObjetivo:number){
     return this.httpClient.post<InfoGraphModel>(`${environment.API_URL}obtenerTareasPorObjetivo`,{idObjetivo:idObjetivo}).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.log('Error:', error);
+        return throwError(()=>'Ocurrió un error en la solicitud');
+      })
+    )
+  }
+  getAllData(){
+    return this.httpClient.get(`${environment.API_URL}`, { responseType: 'text' }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log('Error:', error);
         return throwError(()=>'Ocurrió un error en la solicitud');

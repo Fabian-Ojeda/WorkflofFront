@@ -3,33 +3,3 @@
 <div>
   <app-home></app-home>
 </div>
-
-<h1>Diagrama con GoJS</h1>
-<div>
-  <gojs-diagram #myDiagram [divClassName]='diagramDivClassName' [initDiagram]='initDiagram'
-                [nodeDataArray]='state.diagramNodeData' [linkDataArray]='state.diagramLinkData'
-                [modelData]='state.paletteModelData' (modelChange)='diagramModelChange($event)'>
-  </gojs-diagram>
-</div>
-<div>
-  <h4>A continuación la información de nodos y relaciones</h4>
-</div>
-
-<div class="clear left box">
-  <h5>Links in app data</h5>
-  <ul>
-    <li *ngFor="let ld of state.diagramLinkData">
-      Link Key: {{ld.key}}, To: {{ld.to}}, From: {{ ld.from }}
-    </li>
-  </ul>
-</div>
-
-<div class="left box">
-  <h5>Nodes in app data :)</h5>
-  <ul>
-    <li *ngFor="let nd of state.diagramNodeData">
-      Node ID: {{nd.id}}, Text: {{nd.text}}, Color: {{nd.color}}
-    </li>
-  </ul>
-</div>
-<button (click)="cambiarNodos()" >Apachurrele aqui para cambiar los nodos</button>

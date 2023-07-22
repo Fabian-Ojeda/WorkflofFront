@@ -8,14 +8,15 @@
     </div>
     <div>
       <div class="left">
-        <app-inspector [nodeData]='state.selectedNodeData' (onInspectorChange)='handleInspectorChange($event)'></app-inspector>
-      </div>
-      <div class="left">
         <h6 class="display-9">Visión general</h6>
         <gojs-overview #myOverview [initOverview]='initOverview' [divClassName]='oDivClassName'
                        [observedDiagram]='observedDiagram'></gojs-overview>
 
       </div>
+      <div class="left">
+        <app-inspector [nodeData]='state.selectedNodeData' (onInspectorChange)='handleInspectorChange($event)'></app-inspector>
+      </div>
+
     </div>
   </div>
 </div>

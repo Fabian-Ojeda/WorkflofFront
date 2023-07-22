@@ -5,9 +5,9 @@ import produce from 'immer';
 import { DiagramDataService } from "../../services/diagramData/diagram-data.service";
 import {InfoNodeModel} from "../../models/info-node.model";
 import {InfoRelationModel} from "../../models/info-relation.model";
-import {SaveInfoTareasObjetivoModel} from "../../models/save-info-tareas-objetivo.model";
 import {SpinnerService} from "../../services/spinner/spinner.service";
 import {ShowAlertService} from "../../services/showAlert/show-alert.service";
+import {SaveInfoTareasObjetivoModel} from "../../models/save-info-tareas-objetivo.model";
 
 @Component({
   selector: 'app-my-diagram',
@@ -92,7 +92,7 @@ export class MyDiagramComponent implements OnInit{
     const $ = go.GraphObject.make;
     const dia = $(go.Diagram, {
       'undoManager.isEnabled': true,
-      'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightblue' },
+      'clickCreatingTool.archetypeNodeData': { text: 'new node', color: 'lightgreen' },
       model: $(go.GraphLinksModel,
         {
           nodeKeyProperty: 'id',
@@ -169,13 +169,14 @@ export class MyDiagramComponent implements OnInit{
         { strokeWidth: 1.5 },
         new go.Binding('stroke', 'progress', progress => progress ? "#52ce60" /* green */ : 'black'),
         new go.Binding('strokeWidth', 'progress', progress => progress ? 2.5 : 1.5)),
-      // A copntinuación el simbolo de la flecha
+      // A continuación el simbolo de la flecha
       $(go.Shape,  // the arrowhead
         { toArrow: "standard", stroke: null },
         new go.Binding('fill', 'progress', progress => progress ? "#52ce60" /* green */ : 'black')),
+
       $(go.Panel, "Auto",
         //a continuación la sección del texto
-        $(go.TextBlock, "(°O°)",  // the label text
+        $(go.TextBlock, "inserte relación",  // the label text
           {
             textAlign: "center",
             font: "9pt helvetica, arial, sans-serif",
@@ -250,8 +251,6 @@ export class MyDiagramComponent implements OnInit{
         }
       }
     });
-    // console.log("Nodos", this.state.diagramNodeData)
-    // console.log("Links", this.state.diagramLinkData)
   }
 
   public handleInspectorChange(changedPropAndVal: { prop: any; newVal: any; }) {
@@ -277,25 +276,24 @@ export class MyDiagramComponent implements OnInit{
   }
 
   saveChanges(){
-    console.log("las relaciones se ven asi: ",this.state.diagramLinkData)
 
-   //  let infoToSave: SaveInfoTareasObjetivoModel= {
-   //    idObjetivo: this.idObjetivoActual,
-   //    nodes: this.state.diagramNodeData,
-   //    relations: this.state.diagramLinkData
-   //  };
-   //  this.spinnerService.show();
-   //  this.diagramDataService.guardarDataTareasObjetivo(infoToSave).subscribe(
-   //    data=> {
-   //      this.spinnerService.hide();
-   //      this.showAlert.showSuccess("Información guardada", data.description)
-   //      console.log(data)
-   //    },
-   //    error => {
-   //      this.spinnerService.hide();
-   //      this.showAlert.showError("Error", error);
-   //    }
-   //  )
-    }
+    let infoToSave: SaveInfoTareasObjetivoModel= {
+      idObjetivo: this.idObjetivoActual,
+      nodes: this.state.diagramNodeData,
+      relations: this.state.diagramLinkData
+    };
+    this.spinnerService.show();
+    this.diagramDataService.guardarDataTareasObjetivo(infoToSave).subscribe(
+      data=> {
+        this.spinnerService.hide();
+        this.showAlert.showSuccess("Información guardada", data.description)
+        console.log(data)
+      },
+      error => {
+        this.spinnerService.hide();
+        this.showAlert.showError("Error", error);
+      }
+    )
+     }
 
 }
