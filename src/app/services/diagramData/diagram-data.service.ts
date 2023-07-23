@@ -18,15 +18,18 @@ export class DiagramDataService {
   ) {
   }
   getObjetivosPorCreador(personaId:number){
-    return this.httpClient.get<PersonaNodosDTOModel>(`${environment.API_URL}obtenerObjetivosPorCreador?personaId=${personaId}`).pipe(
+    return this.httpClient.get<ResponseDTOModel<PersonaNodosDTOModel>>(`${environment.API_URL}obtenerObjetivosPorCreador?personaId=${personaId}`).pipe(
+      map((response)=>{
+        return response.contenido
+      }),
       catchError((error: HttpErrorResponse) => {
-        console.log('Error:', error);
-        return throwError(()=>'Ocurrió un error en la solicitud');
+        return throwError(()=> error.error.message);
       })
     )
   }
   getInfoObjetivos(idObjetivo:number){
-    return this.httpClient.post<InfoGraphModel>(`${environment.API_URL}obtenerTareasPorObjetivo`,{idObjetivo:idObjetivo}).pipe(
+    return this.httpClient.post<InfoGraphModel>(`${environment.API_URL}obtenerTareasPorObjetivo`,{idObjetivo:idObjetivo})
+      .pipe(
       catchError((error: HttpErrorResponse) => {
         console.log('Error:', error);
         return throwError(()=>'Ocurrió un error en la solicitud');
@@ -43,7 +46,7 @@ export class DiagramDataService {
   }
   guardarDataTareasObjetivo(dataToSave : SaveInfoTareasObjetivoModel){
     console.log("esto nos llega para guardar", dataToSave)
-    return this.httpClient.post<ResponseDTOModel>(`${environment.API_URL}guardarTareasPorObjetivo`,dataToSave).pipe(
+    return this.httpClient.post<ResponseDTOModel<string>>(`${environment.API_URL}guardarTareasPorObjetivo`,dataToSave).pipe(
       catchError((error: HttpErrorResponse) => {
         console.log('Error:', error);
         return throwError(()=>'Ocurrió un error en la solicitud');

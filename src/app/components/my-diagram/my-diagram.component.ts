@@ -68,7 +68,6 @@ export class MyDiagramComponent implements OnInit{
     this.spinnerService.show();
     this.diagramDataService.getInfoObjetivos(idObjetivo).subscribe(
       data=> {
-
         console.log("nodos que llegan", data.nodes)
         console.log("relaciones que llegan", data.relations)
         this.myDiagramComponent.clear();
